@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:great_apes/big_ape_details.dart';
 
 import 'big_ape.dart';
 
@@ -50,19 +51,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +61,19 @@ class _HomePageState extends State<HomePage> {
         child: ListView.builder(
           itemCount: BigApe.samples.length,
           itemBuilder: (BuildContext context, int index) {
-            return buildApeCard(BigApe.samples[index]);
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return BigApeDetails(bigApe: BigApe.samples[index]);
+                    }
+                  )
+                );
+              },
+              child: buildApeCard(BigApe.samples[index]),
+            );
           },
         ),
       )
@@ -96,8 +96,7 @@ class _HomePageState extends State<HomePage> {
                 bigApe.name,
                 style: TextStyle(
                   fontSize: 24.0,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Roboto'
+                  fontWeight: FontWeight.w600
                 ),
             ),
           ],
