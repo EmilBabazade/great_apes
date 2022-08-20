@@ -82,11 +82,26 @@ class _HomePageState extends State<HomePage> {
 
   Widget buildApeCard(BigApe bigApe) {
     return Card (
-      child: Column (
-        children: <Widget>[
-          Image.asset(bigApe.imgUrl),
-          Text(bigApe.name),
-        ],
+      elevation: 4.0,
+      shape: BeveledRectangleBorder(
+        borderRadius: BorderRadius.circular(20)
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column (
+          children: <Widget>[
+            Image.asset(bigApe.imgUrl),
+            const SizedBox(height: 14.0,),
+            Text(
+                bigApe.name,
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Roboto'
+                ),
+            ),
+          ],
+        )
       )
     );
   }
